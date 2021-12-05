@@ -1,16 +1,17 @@
+import Link from 'next/link';
 import cx from 'classnames';
 
 interface TableRowProps{
-    title:string
-    category:string
-    item:number
-    price:number
-    status: 'Pending'|'Failed'|'Success'
     image:string
+    title: string
+    category: string
+    item: number
+    price:number
+    status: 'Pending' |'Success' |'Failed'
 }
 export default function TableRow(props:TableRowProps) {
   const {
-    title, category, item, price, status, image,
+    image, title, category, item, price, status,
   } = props;
 
   const statusClass = cx({
@@ -20,14 +21,14 @@ export default function TableRow(props:TableRowProps) {
     failed: status === 'Failed',
   });
   return (
-    <tr className="align-middle">
+    <tr data-category="pending" className="align-middle">
       <th scope="row">
         <img
           className="float-start me-3 mb-lg-0 mb-3"
           src={`/img/${image}.png`}
-          width={80}
-          height={60}
-          alt="game thumbnail"
+          width="80"
+          height="60"
+          alt=""
         />
         <div className="game-title-header">
           <p className="game-title fw-medium text-start color-palette-1 m-0">
@@ -44,7 +45,7 @@ export default function TableRow(props:TableRowProps) {
         </p>
       </td>
       <td>
-        <p className="fw-medium text-start color-palette-1 m-0">{price}</p>
+        <p className="fw-medium color-palette-1 m-0">{price}</p>
       </td>
       <td>
         <div>
@@ -54,6 +55,16 @@ export default function TableRow(props:TableRowProps) {
 
           </p>
         </div>
+      </td>
+      <td>
+        <Link href="/member/transaction/detail">
+          <a
+            className="btn btn-status rounded-pill text-sm"
+          >
+            Details
+
+          </a>
+        </Link>
       </td>
     </tr>
   );
