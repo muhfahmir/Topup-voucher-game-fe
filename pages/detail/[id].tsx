@@ -7,28 +7,31 @@ import TopUpItem from '../../components/organisms/TopUpItem';
 import { getDetailVoucher } from '../../services/player';
 
 export default function Detail() {
-  const {query, isReady} = useRouter();
+  const { query, isReady } = useRouter();
   const [dataItem, setDataItem] = useState({
     name: '',
     thumbnail: '',
-    category:{
-      name: ''
-    }
-  })
+    category: {
+      name: '',
+    },
+  });
 
-  const getVoucherDetailAPI = useCallback(async (id)=>{
+  const [nominals, setNominals] = useState([]);
+  const [payments, setPayments] = useState([]);
+
+  const getVoucherDetailAPI = useCallback(async (id) => {
     const data = await getDetailVoucher(id);
-    setDataItem(data);
-    console.log('data: ',data);
-  },[])
+    setDataItem(data.detail);
+    setNominals(data.detail.nominals);
+    setPayments(data.payment);
+    console.log('data: ', data);
+  }, []);
 
   useEffect(() => {
-    if(isReady){
+    if (isReady) {
       getVoucherDetailAPI(query.id);
-    }else{
-      console.log('router tida tersedia');
     }
-  }, [isReady])
+  }, [isReady]);
 
   return (
     <>
@@ -46,7 +49,7 @@ export default function Detail() {
             <div className="col-xl-9 col-lg-8 col-md-7 ps-md-25">
               <TopUpItem type="dekstop" data={dataItem} />
               <hr />
-              <TopUpForm />
+              <TopUpForm nominals={nominals} payments={payments} />
             </div>
           </div>
         </div>
