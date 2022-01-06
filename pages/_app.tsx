@@ -16,6 +16,8 @@ import '../styles/edit-profile.css';
 import '../styles/navbar-log-in.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyApp = function ({ Component, pageProps }: AppProps) {
   return (
@@ -50,6 +52,7 @@ const MyApp = function ({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
+      <ToastContainer />
     </>
   );
 };
