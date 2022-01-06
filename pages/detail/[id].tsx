@@ -24,7 +24,7 @@ export default function Detail() {
     setDataItem(data.detail);
     setNominals(data.detail.nominals);
     setPayments(data.payment);
-    console.log('data: ', data);
+    // console.log('data: ', data);
   }, []);
 
   useEffect(() => {

@@ -25,11 +25,8 @@ export default function SignUpPhoto() {
     setFavorite(data[0]._id);
   }, [getGameCategory]);
 
-  useEffect(() => () => {
-    getGameCategoryAPI();
-  }, []);
-
   useEffect(() => {
+    getGameCategoryAPI();
     const getLocalForm = localStorage.getItem('user-form');
     setLocalForm(JSON.parse(getLocalForm!));
   }, []);
