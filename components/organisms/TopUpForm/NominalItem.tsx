@@ -22,7 +22,10 @@ export default function NominalItem(props: NominalItemProps) {
       <div className="detail-card">
         <div className="d-flex justify-content-between">
           <p className="text-3xl color-palette-1 m-0">
-            <span className="fw-medium">{coinQuantity}</span>
+            <span className="fw-medium">
+              {coinQuantity}
+              {' '}
+            </span>
             {coinName}
           </p>
           <svg
