@@ -1,8 +1,6 @@
-import jwtDecode from 'jwt-decode';
 import Image from 'next/image';
 import Link from 'next/link';
 import SignInForm from '../components/organisms/SignInForm';
-import { JWTPayloadTypes, UserTypes } from '../services/data-types';
 
 export default function SignIn() {
   return (

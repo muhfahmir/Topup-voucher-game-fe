@@ -10,7 +10,7 @@ interface TransactionDetailProps{
 
 export default function TransactionsDetail(props: TransactionDetailProps) {
   const { transactionDetail } = props;
-  console.log('detail: ', transactionDetail);
+  // console.log('detail: ', transactionDetail);
   return (
     <section className="transactions-detail overflow-auto">
       <Sidebar activeMenu="transactions" />

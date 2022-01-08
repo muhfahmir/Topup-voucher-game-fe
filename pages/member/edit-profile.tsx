@@ -8,9 +8,17 @@ import Sidebar from '../../components/organisms/Sidebar';
 import { JWTPayloadTypes, UserTypes } from '../../services/data-types';
 import { updateProfile } from '../../services/member';
 
+interface UserStateTypes {
+  id: string;
+  name: string;
+  email: string;
+  avatar: any;
+  phoneNumber: string;
+}
+
 export default function EditProfile() {
-  const [imagePreview, setImagePreview] = useState(null);
-  const [user, setUser] = useState({
+  const [imagePreview, setImagePreview] = useState('/');
+  const [user, setUser] = useState<UserStateTypes>({
     id: '',
     name: '',
     email: '',
@@ -42,7 +50,7 @@ export default function EditProfile() {
     if (response.error) {
       toast.error(response.message);
     } else {
-      console.log('data: ', response);
+      // console.log('data: ', response);
       Cookies.remove('token');
       router.push('/sign-in');
     }
@@ -68,7 +76,15 @@ export default function EditProfile() {
                 <div className="image-upload">
                   <label htmlFor="avatar">
                     {
-                      imagePreview ? (
+                      imagePreview === '/' ? (
+                        <img
+                          src={user.avatar}
+                          alt="icon upload"
+                          width={90}
+                          height={90}
+                          style={{ borderRadius: '100%' }}
+                        />
+                      ) : (
                         <img
                           src={imagePreview}
                           alt="icon upload"
@@ -76,14 +92,6 @@ export default function EditProfile() {
                           height={90}
                           style={{ borderRadius: '100%' }}
 
-                        />
-                      ) : (
-                        <img
-                          src={user.avatar}
-                          alt="icon upload"
-                          width={90}
-                          height={90}
-                          style={{ borderRadius: '100%' }}
                         />
                       )
                     }
@@ -95,7 +103,7 @@ export default function EditProfile() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(event) => {
-                      const img = event.target.files[0];
+                      const img = event.target.files![0];
                       setImagePreview(URL.createObjectURL(img));
                       return setUser({
                         ...user,

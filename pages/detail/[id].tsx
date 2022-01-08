@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Footer from '../../components/organisms/Footer';
 import Navbar from '../../components/organisms/Navbar';
 import TopUpForm from '../../components/organisms/TopUpForm';
@@ -80,7 +79,7 @@ export async function getStaticPaths() {
       id: item._id,
     },
   }));
-  console.log(paths);
+  // console.log(paths);
   return {
     paths,
     fallback: false,
@@ -96,7 +95,7 @@ interface GetStaticProps{
 export async function getStaticProps({ params }:GetStaticProps) {
   const { id } = params;
   const data = await getDetailVoucher(id);
-  console.log('data: ', data);
+  // console.log('data: ', data);
   return {
     props: {
       dataItem: data.detail,
