@@ -1,3 +1,5 @@
+import NumberFormat from 'react-number-format';
+
 interface RowProps{
     label: string
     value: string | number
@@ -11,7 +13,16 @@ export default function Row(props: Partial<RowProps>) {
       <span
         className={`purchase-details ${className}`}
       >
-        {value}
+        {typeof value === 'string' ? (
+          value) : (
+            <NumberFormat
+              value={value}
+              displayType="text"
+              thousandSeparator="."
+              decimalSeparator=","
+              prefix="Rp. "
+            />
+        )}
       </span>
 
     </p>

@@ -82,6 +82,7 @@ export default function TransactionContent() {
                       status={transaction.status}
                       price={transaction.value}
                       image={`${IMG}/${transaction.historyVoucherTopup.thumbnail}`}
+                      id={transaction._id}
                     />
                   ))
                 }
